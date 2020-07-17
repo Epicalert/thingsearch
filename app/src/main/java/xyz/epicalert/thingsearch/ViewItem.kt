@@ -26,6 +26,7 @@ class ViewItem : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_item)
         setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         itemUUID = UUID.fromString(intent.getStringExtra(EditItem.EXTRA_ITEM_UUID))
 
