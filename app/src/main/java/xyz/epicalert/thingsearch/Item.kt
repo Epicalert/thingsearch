@@ -31,6 +31,9 @@ interface ItemDao {
     @Query("SELECT * FROM items")
     fun selectAll(): LiveData<List<Item>>
 
+    @Query("SELECT * FROM items WHERE name LIKE '%' + :query + '%'")
+    fun search(query: String): LiveData<List<Item>>
+
     @Insert
     fun insertAll(vararg items: Item)
 
@@ -77,6 +80,10 @@ class ItemRepository(private val itemDao: ItemDao) {
     fun findByIdSync(uuid: UUID): Item {
         return itemDao.findByIdSync(uuid.mostSignificantBits, uuid.leastSignificantBits)
     }
+
+    fun search(query: String): LiveData<List<Item>> {
+        return itemDao.search(query)
+    }
 }
 
 class ItemViewModel(application: Application) : AndroidViewModel(application) {
@@ -122,5 +129,9 @@ class ItemViewModel(application: Application) : AndroidViewModel(application) {
         }
 
         return parentLiveList
+    }
+
+    fun search(query: String): LiveData<List<Item>> {
+        return repository.search(query)
     }
 }

@@ -37,6 +37,10 @@ class ItemListAdapter():
         notifyDataSetChanged()
     }
 
+    internal fun getList(): List<Item> {
+        return itemList
+    }
+
     override fun getItemCount() = itemList.size
 
     //puts item data into the viewholder
