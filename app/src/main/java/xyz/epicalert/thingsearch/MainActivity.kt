@@ -19,9 +19,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import java.util.*
 
-const val REQUEST_CODE_EDIT_ITEM = 101
-const val REQUEST_CODE_ADD_ITEM = 102
-
 class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: ItemListAdapter
@@ -88,14 +85,14 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == REQUEST_CODE_ADD_ITEM && resultCode == Activity.RESULT_OK) {
-            val uuidItem = UUID.fromString(data?.getStringExtra(EditItem.EXTRA_ITEM_UUID))
-            val uuidParent = UUID.fromString(data?.getStringExtra(EditItem.EXTRA_ITEM_PARENT))
+            val uuidItem = UUID.fromString(data?.getStringExtra(EXTRA_ITEM_UUID))
+            val uuidParent = UUID.fromString(data?.getStringExtra(EXTRA_ITEM_PARENT))
 
             val newItem = Item(
                 uuidItem.mostSignificantBits, uuidItem.leastSignificantBits,
                 uuidParent.mostSignificantBits, uuidParent.leastSignificantBits,
-                data?.getStringExtra(EditItem.EXTRA_ITEM_NAME),
-                data?.getStringExtra(EditItem.EXTRA_ITEM_TAGS)
+                data?.getStringExtra(EXTRA_ITEM_NAME),
+                data?.getStringExtra(EXTRA_ITEM_TAGS)
             )
 
             itemViewModel.insert(newItem)
@@ -114,7 +111,7 @@ class MainActivity : AppCompatActivity() {
         val uuid = UUID(item.uuid_m, item.uuid_l)
 
         val intent = Intent(this, ViewItem::class.java)
-        intent.putExtra(EditItem.EXTRA_ITEM_UUID, uuid.toString())
+        intent.putExtra(EXTRA_ITEM_UUID, uuid.toString())
         startActivity(intent)
     }
 
