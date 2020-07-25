@@ -44,7 +44,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginHorizontal="8dp"
         android:textStyle="bold"
-        android:text="Parents" />
+        android:text="@string/view_header_parents" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/item_details_parents"

@@ -4,14 +4,14 @@
     <item
         android:id="@+id/menu_view_add_child"
         android:icon="@drawable/ic_baseline_add"
-        android:title="Add child"
+        android:title="@string/menu_add_child"
         app:showAsAction="ifRoom" />
     <item android:id="@+id/menu_view_edit"
-        android:title="Edit"
+        android:title="@string/menu_edit"
         android:icon="@drawable/ic_baseline_edit_24"
         app:showAsAction="ifRoom"/>
     <item android:id="@+id/menu_view_delete"
-        android:title="Delete"
+        android:title="@string/menu_delete"
         android:icon="@drawable/ic_baseline_delete_24"
         app:showAsAction="ifRoom"/>
 </menu>

@@ -50,7 +50,7 @@ class EditItem : AppCompatActivity() {
 
         if (TextUtils.isEmpty(findViewById<TextView>(R.id.id).text) ||
             TextUtils.isEmpty(findViewById<TextView>(R.id.parent_id).text)) {
-            Toast.makeText(applicationContext, "Cancelled because of empty ID", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, R.string.error_empty_id, Toast.LENGTH_SHORT).show()
 
             setResult(Activity.RESULT_CANCELED, replyIntent)
             finish()
