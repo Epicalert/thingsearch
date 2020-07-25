@@ -1,5 +1,6 @@
 package xyz.epicalert.thingsearch
 
+const val EXTRA_REQUEST_CODE = "xyz.epicalert.thingsearch.EXTRA_REQUEST_CODE"
 const val EXTRA_ITEM_NAME = "xyz.epicalert.thingsearch.EXTRA_ITEM_NAME"
 const val EXTRA_ITEM_TAGS = "xyz.epicalert.thingsearch.EXTRA_ITEM_TAGS"
 const val EXTRA_ITEM_UUID = "xyz.epicalert.thingsearch.EXTRA_ITEM_UUID"

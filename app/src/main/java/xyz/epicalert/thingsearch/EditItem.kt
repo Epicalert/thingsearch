@@ -23,8 +23,26 @@ class EditItem : AppCompatActivity() {
         setContentView(R.layout.activity_edit_item)
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        findViewById<EditText>(R.id.id).setText(UUID.randomUUID().toString())
-        findViewById<EditText>(R.id.parent_id).setText(UUID(0,0).toString())
+
+        val requestCode = intent.getIntExtra(EXTRA_REQUEST_CODE, REQUEST_CODE_ADD_ITEM)
+
+        when (requestCode) {
+            REQUEST_CODE_ADD_ITEM -> {
+                findViewById<EditText>(R.id.id).setText(UUID.randomUUID().toString())
+                if (intent.getStringExtra(EXTRA_ITEM_PARENT) == null) {
+                    findViewById<EditText>(R.id.parent_id).setText(UUID(0,0).toString())
+                } else {
+                    findViewById<EditText>(R.id.parent_id).setText(intent.getStringExtra(EXTRA_ITEM_PARENT).toString())
+                }
+            }
+
+            REQUEST_CODE_EDIT_ITEM -> {
+                findViewById<EditText>(R.id.id).setText(intent.getStringExtra(EXTRA_ITEM_UUID).toString())
+                findViewById<EditText>(R.id.parent_id).setText(intent.getStringExtra(EXTRA_ITEM_PARENT).toString())
+                findViewById<EditText>(R.id.name).setText(intent.getStringExtra(EXTRA_ITEM_NAME).toString())
+                findViewById<EditText>(R.id.tags).setText(intent.getStringExtra(EXTRA_ITEM_TAGS).toString())
+            }
+        }
     }
 
     fun applyChanges(view: View) {

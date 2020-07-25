@@ -39,6 +39,9 @@ interface ItemDao {
 
     @Delete
     fun delete(item: Item)
+
+    @Update
+    fun update(item: Item)
 }
 
 @Database(entities = arrayOf(Item::class), version = 1)
@@ -83,6 +86,14 @@ class ItemRepository(private val itemDao: ItemDao) {
 
     fun search(query: String): LiveData<List<Item>> {
         return itemDao.search(query)
+    }
+
+    fun delete(item: Item) {
+        itemDao.delete(item)
+    }
+
+    fun update(item: Item) {
+        itemDao.update(item)
     }
 }
 
@@ -133,5 +144,13 @@ class ItemViewModel(application: Application) : AndroidViewModel(application) {
 
     fun search(query: String): LiveData<List<Item>> {
         return repository.search(query)
+    }
+
+    fun delete(item: Item) = viewModelScope.launch(Dispatchers.IO) {
+        repository.delete(item)
+    }
+
+    fun update(item: Item) = viewModelScope.launch(Dispatchers.IO) {
+        repository.update(item)
     }
 }
