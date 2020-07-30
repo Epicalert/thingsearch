@@ -53,30 +53,66 @@
         android:hint="@string/edit_tags"
         />
 
-    <EditText
-        android:id="@+id/id"
+    <RelativeLayout
+        android:id="@+id/id_group"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_below="@+id/tags"
-        android:layout_marginHorizontal="16dp"
-        android:singleLine="true"
-        android:hint="@string/edit_id"
-        />
+        android:layout_below="@+id/tags">
 
-    <EditText
-        android:id="@+id/parent_id"
+        <Button
+            android:id="@+id/id_qr"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="@string/edit_scan"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:onClick="scanQR"/>
+
+        <EditText
+            android:id="@+id/id"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="16dp"
+            android:singleLine="true"
+            android:hint="@string/edit_id"
+            android:layout_toStartOf="@id/id_qr"
+            android:layout_toLeftOf="@id/id_qr" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/parent_id_group"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_below="@+id/id"
-        android:layout_marginHorizontal="16dp"
-        android:singleLine="true"
-        android:hint="@string/edit_parent"
-        />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_group">
+
+        <Button
+            android:id="@+id/parent_id_qr"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="@string/edit_scan"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:onClick="scanQR"/>
+
+        <EditText
+            android:id="@+id/parent_id"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="16dp"
+            android:singleLine="true"
+            android:hint="@string/edit_parent"
+            android:layout_toStartOf="@+id/parent_id_qr"
+            android:layout_toLeftOf="@+id/parent_id_qr" />
+
+    </RelativeLayout>
+
+
 
     <Button
         android:layout_width="128dp"
         android:layout_height="48dp"
-        android:layout_below="@+id/parent_id"
+        android:layout_below="@+id/parent_id_group"
         android:layout_centerHorizontal="true"
         android:text="@string/apply"
         android:onClick="applyChanges"/>

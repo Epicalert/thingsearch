@@ -9,6 +9,7 @@
     <string name="edit_id">Item ID</string>
     <string name="edit_tags">Item Tags (separate with comma)</string>
     <string name="edit_parent">Parent ID</string>
+    <string name="edit_scan">Scan</string>
 
     <string name="view_header_parents">Parents</string>
 
