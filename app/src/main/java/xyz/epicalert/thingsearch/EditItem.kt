@@ -55,6 +55,9 @@ class EditItem : AppCompatActivity() {
 
         val scanResult = IntentIntegrator.parseActivityResult(resultCode, data) ?: return
 
+        //don't set edittext when scan is cancelled
+        if (scanResult.contents == null) return
+
         when (requestCode) {
             REQUEST_CODE_SCAN_UUID -> {
                 findViewById<EditText>(R.id.id).setText(scanResult.contents)
