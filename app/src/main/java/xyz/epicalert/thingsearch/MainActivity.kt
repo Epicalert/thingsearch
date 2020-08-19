@@ -17,6 +17,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
+import com.google.zxing.integration.android.IntentIntegrator
+import com.google.zxing.integration.android.IntentResult
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -84,6 +86,18 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        val scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+
+        if (scanResult != null && scanResult.contents != null) {
+            val intent = Intent(this, ViewItem::class.java)
+
+            //TODO: check if UUID scanned is valid
+            intent.putExtra(EXTRA_ITEM_UUID, scanResult.contents)
+            startActivity(intent)
+
+            return
+        }
+
         if (requestCode == REQUEST_CODE_ADD_ITEM && resultCode == Activity.RESULT_OK) {
             val uuidItem = UUID.fromString(data?.getStringExtra(EXTRA_ITEM_UUID))
             val uuidParent = UUID.fromString(data?.getStringExtra(EXTRA_ITEM_PARENT))
@@ -99,11 +113,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //TODO: change this function name to something more reasonable
     fun gotothething(view: View) {
         Log.i("MainActivity", "goin to the thing")
         val intent = Intent(this, EditItem::class.java)
 
         startActivityForResult(intent, REQUEST_CODE_ADD_ITEM)
+    }
+
+    fun identifyQR(view: View) {
+        val integrator = IntentIntegrator(this)
+
+        integrator.setBeepEnabled(false)
+        integrator.initiateScan()
     }
 
     fun editItem(view: View) {
