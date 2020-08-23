@@ -113,9 +113,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //TODO: change this function name to something more reasonable
-    fun gotothething(view: View) {
-        Log.i("MainActivity", "goin to the thing")
+    fun addItem(view: View) {
         val intent = Intent(this, EditItem::class.java)
 
         startActivityForResult(intent, REQUEST_CODE_ADD_ITEM)
