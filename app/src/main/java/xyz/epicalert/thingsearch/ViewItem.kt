@@ -80,6 +80,11 @@ class ViewItem : AppCompatActivity() {
         if (requestCode == REQUEST_CODE_ADD_ITEM) itemViewModel.insert(newItem)
 
         if (requestCode == REQUEST_CODE_EDIT_ITEM) itemViewModel.update(newItem)
+
+        //refresh parent list
+        itemViewModel.getParentList(itemUUID).observe(this, Observer {
+            viewAdapter.setList(it)
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
