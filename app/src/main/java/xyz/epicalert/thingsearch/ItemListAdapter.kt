@@ -49,6 +49,6 @@ class ItemListAdapter():
 
         holder.nameView.text = item.name
         holder.tagsView.text = item.tags
-        holder.uuidView.text = UUID(item.uuid_m, item.uuid_l).toString()
+        holder.uuidView.text = item.getUUID().toString()
     }
 }

@@ -13,6 +13,7 @@ class ItemSearcher() {
         val lowercaseQuery = query.toLowerCase()
 
         for (item in itemList) {
+            //TODO: support searching tags out of order
             val searchables = item.name?.toLowerCase() + " " + item.tags?.toLowerCase()
 
             if (query in searchables) {

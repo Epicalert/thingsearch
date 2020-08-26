@@ -128,7 +128,7 @@ class MainActivity : AppCompatActivity() {
 
     fun editItem(view: View) {
         val item = viewAdapter.getList()[recyclerView.getChildAdapterPosition(view)]
-        val uuid = UUID(item.uuid_m, item.uuid_l)
+        val uuid = item.getUUID()
 
         val intent = Intent(this, ViewItem::class.java)
         intent.putExtra(EXTRA_ITEM_UUID, uuid.toString())

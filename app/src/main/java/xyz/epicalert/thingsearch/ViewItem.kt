@@ -108,7 +108,7 @@ class ViewItem : AppCompatActivity() {
                 val intent = Intent(this, EditItem::class.java)
 
                 intent.putExtra(EXTRA_ITEM_UUID, itemUUID.toString())
-                intent.putExtra(EXTRA_ITEM_PARENT, UUID(itemToView.parent_m, itemToView.parent_l).toString()) //TODO: function in item class to create uuid and parent uuid
+                intent.putExtra(EXTRA_ITEM_PARENT, itemToView.getParent().toString())
                 intent.putExtra(EXTRA_ITEM_NAME, itemToView.name)
                 intent.putExtra(EXTRA_ITEM_TAGS, itemToView.tags)
 

@@ -12,13 +12,31 @@ import kotlin.concurrent.thread
 
 @Entity(tableName = "items", primaryKeys = arrayOf("uuid_m", "uuid_l"))
 data class Item(
-    val uuid_m: Long,
-    val uuid_l: Long,
-    val parent_m: Long,
-    val parent_l: Long,
+    var uuid_m: Long,
+    var uuid_l: Long,
+    var parent_m: Long,
+    var parent_l: Long,
     val name: String?,
     val tags: String?
-)
+) {
+    fun setUUID(uuid: UUID) {
+        uuid_m = uuid.mostSignificantBits
+        uuid_l = uuid.leastSignificantBits
+    }
+
+    fun setParent(uuid: UUID) {
+        parent_m = uuid.mostSignificantBits
+        parent_l = uuid.leastSignificantBits
+    }
+
+    fun getUUID(): UUID {
+        return UUID(uuid_m, uuid_l)
+    }
+
+    fun getParent(): UUID {
+        return UUID(parent_m, parent_l)
+    }
+}
 
 @Dao
 interface ItemDao {
